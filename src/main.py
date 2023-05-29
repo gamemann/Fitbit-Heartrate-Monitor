@@ -7,14 +7,26 @@ import actions
 
 def main():
     cfg_file = "/etc/fhm/cfg.json"
+    list = False
 
-    # Check if we have a custom CFG path.
+    # Parse arguments.
     for arg in sys.argv:
+        # Check for custom config path.
         if arg.startswith("cfg="):
             cfg_file = arg.split("=")[1]
+
+        # Check for list.
+        if arg == "-l" or arg == "--list":
+            list = True
     
     # Load config.
     cfg = config.loadCFG(cfg_file)
+
+    # Check if we need to print config.
+    if list:
+        print(cfg)
+        
+        return
 
     # Create an infinite loop that executes each second.
     while True:
