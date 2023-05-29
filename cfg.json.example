@@ -1,0 +1,12 @@
+{
+    "Debug": 0,
+    "Authorization": "",
+    "UserID": "-",
+    "LowThreshold": 50,
+    "HighThreshold": 120,
+    "AvgCount": 10,
+    "Actions": 
+    [
+
+    ]
+}
