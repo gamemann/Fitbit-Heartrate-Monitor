@@ -3,13 +3,13 @@ import requests
 import utils
 
 def retrieve_heartrates(cfg: dict) -> list | None:
-    ret = []
+    ret: list = []
 
     # Dummy data for now.
     # return [70, 72, 74, 70, 65, 60]
 
     # Send HTTP request and retrieve response.
-    api_url = "https://api.fitbit.com/1/user/" + cfg["UserID"] + "/activities/heart/date/today/1d/1sec.json"
+    api_url: str = "https://api.fitbit.com/1/user/" + cfg["UserID"] + "/activities/heart/date/today/1d/1sec.json"
 
     resp = requests.get(api_url, headers={"Authorization": "Bearer " + cfg["Authorization"]})
 

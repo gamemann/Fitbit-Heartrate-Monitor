@@ -7,8 +7,8 @@ import actions
 import utils
 
 def main():
-    cfg_file = "/etc/fhm/cfg.json"
-    list = False
+    cfg_file: str = "/etc/fhm/cfg.json"
+    list: bool = False
 
     # Parse arguments.
     for arg in sys.argv:
@@ -42,7 +42,7 @@ def main():
             time.sleep(5)
 
         # Get the average between our heart rates.
-        avg_rate = sum(rates) / len(rates)
+        avg_rate: int = int(sum(rates) / len(rates))
 
         utils.debug_message(cfg, 3, "Heart rates retrieved :: Avg => " + str(avg_rate))
 
@@ -51,7 +51,7 @@ def main():
             utils.debug_message(cfg, 1, "Heart rates are below or above thresholds!")
 
             # Determine if we have a low or high threshold.
-            low_or_high = "High"
+            low_or_high: str = "High"
 
             if avg_rate < int(cfg["LowThreshold"]):
                 low_or_high = "Low"
@@ -70,7 +70,7 @@ def main():
                     continue
 
                 # Check for HTTP request.
-                if action.lower() == "http":
+                if action["Type"].lower() == "http":
                     utils.debug_message(cfg, 2, "Found action with type HTTP!")
 
                     # Make sure we have a URL set.
@@ -79,27 +79,27 @@ def main():
 
                         continue
 
-                    url = action["Url"]
+                    url: str = str(action["Url"])
 
                     # Format URL in the case of GET request.
                     url = utils.format_message(url, formats)
 
-                    method = "POST"
+                    method: str = "POST"
 
                     if "Method" in action:
-                        method = action["Method"]
+                        method = str(action["Method"])
 
-                    timeout = 5.0
+                    timeout: float = 5.0
 
                     if "Timeout" in action:
                         timeout = float(action["Timeout"])
                     
-                    headers = {}
+                    headers: dict[str, str] = {}
 
                     if "Headers" in action:
                         headers = action["Headers"]
 
-                    body = {}
+                    body: dict[str, str] = {}
 
                     if "Body" in action:
                         body = action["Body"]
@@ -120,48 +120,48 @@ def main():
                 else:
                     utils.debug_message(cfg, 2, "Found action with type email!")
                     # Retrieve SMTP/email configuration.
-                    host = "localhost"
+                    host: str = "localhost"
 
                     if "Host" in action:
-                        host = action["Host"]
+                        host = str(action["Host"])
 
-                    port = 25
+                    port: int = 25
 
                     if "Port" in action:
                         port = int(action["Port"])
 
-                    from_name = "Test From"
+                    from_name: str = "Test From"
 
                     if "FromName" in action:
-                        from_name = action["FromName"]
+                        from_name = str(action["FromName"])
 
-                    from_email = "test@localhost"
+                    from_email: str = "test@localhost"
 
                     if "FromEmail" in action:
-                        from_email = action["FromEmail"]
+                        from_email = str(action["FromEmail"])
 
-                    to_name = "Test User"
+                    to_name: str = "Test User"
 
                     if "ToName" in action:
-                        to_name = action["ToName"]
+                        to_name = str(action["ToName"])
 
                     to_email = "test@localhost"
 
                     if "ToEmail" in action:
                         to_email = action["ToEmail"]
 
-                    subject = "Heartrate threshold!"
+                    subject: str = "Heartrate threshold!"
 
                     if "Subject" in action:
-                        subject = action["Subject"]
+                        subject = str(action["Subject"])
 
                     # Format subject.
                     subject = utils.format_message(subject, formats)
 
-                    message = "Test contents!"
+                    message: str = "Test contents!"
 
                     if "Message" in action:
-                        message = action["Message"]
+                        message = str(action["Message"])
 
                     # Format message.
                     message = utils.format_message(message, formats)

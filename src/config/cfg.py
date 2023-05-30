@@ -1,7 +1,7 @@
 import json
 
 def loadCFG(path: str) -> tuple:
-    cfg = {}
+    cfg: dict = {}
 
     # Open config file
     with open(path) as file:
