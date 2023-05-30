@@ -4,6 +4,7 @@ import time
 import config
 import fitbit
 import actions
+import utils
 
 def main():
     cfg_file = "/etc/fhm/cfg.json"
@@ -30,7 +31,7 @@ def main():
 
     # Create an infinite loop that executes each second.
     while True:
-        config.debug_message(cfg, 3, "Retrieving heart rates...")
+        utils.debug_message(cfg, 3, "Retrieving heart rates...")
 
         # Retrieve our heart rates as a list.
         rates = fitbit.retrieve_heartrates(cfg)
@@ -38,11 +39,11 @@ def main():
         # Get the average between our heart rates.
         avg_rate = sum(rates) / len(rates)
 
-        config.debug_message(cfg, 3, "Heart rates retrieved :: Avg => " + str(avg_rate))
+        utils.debug_message(cfg, 3, "Heart rates retrieved :: Avg => " + str(avg_rate))
 
         # Check if we're below or above threshold.
         if avg_rate > int(cfg["HighThreshold"]) or avg_rate < int(cfg["LowThreshold"]):
-            config.debug_message(cfg, 1, "Heart rates are below or above thresholds!")
+            utils.debug_message(cfg, 1, "Heart rates are below or above thresholds!")
 
             # Determine if we have a low or high threshold.
             low_or_high = "High"
@@ -52,7 +53,7 @@ def main():
 
             # Loop through actions.
             for action in cfg["Actions"]:
-                config.debug_message(cfg, 3, "Parsing action...")
+                utils.debug_message(cfg, 3, "Parsing action...")
 
                 # Ensure we have a type.
                 if "Type" not in "action":
@@ -62,7 +63,7 @@ def main():
 
                 # Check for HTTP request.
                 if action.lower() == "Http":
-                    config.debug_message(cfg, 2, "Found action with type HTTP!")
+                    utils.debug_message(cfg, 2, "Found action with type HTTP!")
 
                     # Make sure we have a URL set.
                     if "Url" not in action:
@@ -88,12 +89,12 @@ def main():
                     # Make request and retrieve response.
                     resp = actions.send_http_request(action["Url"], method, headers, body)
 
-                    config.debug_message(cfg, 1, "Sending HTTP request :: %s (method => %s)!" % (action["Url"], method))
+                    utils.debug_message(cfg, 1, "Sending HTTP request :: %s (method => %s)!" % (action["Url"], method))
 
-                    config.debug_message(cfg, 3, "HTTP request status code => %d. JSON Response => %s." % (resp.status_code, resp.json()))
+                    utils.debug_message(cfg, 3, "HTTP request status code => %d. JSON Response => %s." % (resp.status_code, resp.json()))
                 # Otherwise, we want to send an email.
                 else:
-                    config.debug_message(cfg, 2, "Found action with type email!")
+                    utils.debug_message(cfg, 2, "Found action with type email!")
                     # Retrieve SMTP/email configuration.
                     host = "localhost"
 
@@ -146,7 +147,7 @@ def main():
                     actions.send_email(host, port, from_email, from_name, to_name, to_email, subject, message)
 
                     # Debug
-                    config.debug_message(cfg, 1, "Sending email :: %s => %s!" % (from_email, to_email))
+                    utils.debug_message(cfg, 1, "Sending email :: %s => %s!" % (from_email, to_email))
         time.sleep(1)
 
 if __name__ == "__main__":
