@@ -2,7 +2,7 @@ import requests
 
 import utils
 
-def retrieve_heartrates(cfg):
+def retrieve_heartrates(cfg) -> list | None:
     ret = []
 
     # Dummy data for now.

@@ -1,6 +1,6 @@
 import requests
 
-def send_http_request(url, method="POST", headers={}, body={}, timeout=5.0):
+def send_http_request(url: str, method: str = "POST", headers: tuple = {}, body: tuple = {}, timeout: float = 5.0):
     resp = None
 
     try:

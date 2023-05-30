@@ -1,4 +1,4 @@
-def format_message(message, format={}):
+def format_message(message: str, format: tuple = {}):
     ret = message
     
     for rep, val in format.items():
@@ -6,7 +6,7 @@ def format_message(message, format={}):
 
     return ret
 
-def retrieve_formats(cfg, avg_rate, low_or_high="Low"):
+def retrieve_formats(cfg, avg_rate: int, low_or_high: str = "Low") -> tuple:
     return {
         "{avg}": avg_rate,
         "{low_or_high}": low_or_high,

@@ -1,6 +1,6 @@
 import smtplib
 
-def send_email(host="localhost", port=25, from_email="test@localhost", from_name="Fitbit Monitor", to_name="Test User", to_email="test@localhost", subject="Heartrate Threshold!", message="Test contents!"):
+def send_email(host: str = "localhost", port: int = 25, from_email: str = "test@localhost", from_name: str = "Fitbit Monitor", to_name: str = "Test User", to_email: str = "test@localhost", subject: str = "Heartrate Threshold!", message: str = "Test contents!"):
     smtp = smtplib.SMTP(host=host, port=port)
     
     body = """From: %s <%s>
