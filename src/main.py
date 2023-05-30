@@ -78,6 +78,11 @@ def main():
 
                     if "Method" in action:
                         method = action["Method"]
+
+                    timeout = 5.0
+
+                    if "Timeout" in action:
+                        timeout = float(action["Timeout"])
                     
                     headers = {}
 
@@ -93,7 +98,7 @@ def main():
                     body = utils.format_message(body, formats)
 
                     # Make request and retrieve response.
-                    resp = actions.send_http_request(action["Url"], method, headers, body)
+                    resp = actions.send_http_request(action["Url"], method, headers, body, timeout)
 
                     utils.debug_message(cfg, 1, "Sending HTTP request :: %s (method => %s)!" % (action["Url"], method))
 
