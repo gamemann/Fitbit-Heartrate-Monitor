@@ -65,7 +65,7 @@ def main():
                     continue
 
                 # Check for HTTP request.
-                if action.lower() == "Http":
+                if action.lower() == "http":
                     utils.debug_message(cfg, 2, "Found action with type HTTP!")
 
                     # Make sure we have a URL set.
@@ -93,9 +93,6 @@ def main():
 
                     if "Body" in action:
                         body = action["Body"]
-
-                    # Format body.
-                    body = utils.format_message(body, formats)
 
                     # Make request and retrieve response.
                     resp = actions.send_http_request(action["Url"], method, headers, body, timeout)
