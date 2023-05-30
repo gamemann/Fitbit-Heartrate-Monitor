@@ -74,6 +74,11 @@ def main():
 
                         continue
 
+                    url = action["Url"]
+
+                    # Format URL in the case of GET request.
+                    url = utils.format_message(url, formats)
+
                     method = "POST"
 
                     if "Method" in action:
@@ -93,6 +98,12 @@ def main():
 
                     if "Body" in action:
                         body = action["Body"]
+
+                    # Format values for body.
+                    for key, val in body.items():
+                        newVal = utils.format_message(val, formats)
+
+                        body[key] = newVal
 
                     # Make request and retrieve response.
                     resp = actions.send_http_request(action["Url"], method, headers, body, timeout)
@@ -138,6 +149,9 @@ def main():
 
                     if "Subject" in action:
                         subject = action["Subject"]
+
+                    # Format subject.
+                    subject = utils.format_message(subject, formats)
 
                     message = "Test contents!"
 
