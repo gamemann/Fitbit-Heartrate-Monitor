@@ -36,6 +36,11 @@ def main():
         # Retrieve our heart rates as a list.
         rates = fitbit.retrieve_heartrates(cfg)
 
+        if rates is None:
+            print("Error retrieving heart rates... Sleeping for 5 seconds.")
+
+            time.sleep(5)
+
         # Get the average between our heart rates.
         avg_rate = sum(rates) / len(rates)
 
