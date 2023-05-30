@@ -88,9 +88,9 @@ def main():
                     # Make request and retrieve response.
                     resp = actions.send_http_request(action["Url"], method, headers, body)
 
-                    # To Do: Check response.
-
                     config.debug_message(cfg, 1, "Sending HTTP request :: %s (method => %s)!" % (action["Url"], method))
+
+                    config.debug_message(cfg, 3, "HTTP request status code => %d. JSON Response => %s." % (resp.status_code, resp.json()))
                 # Otherwise, we want to send an email.
                 else:
                     config.debug_message(cfg, 2, "Found action with type email!")
