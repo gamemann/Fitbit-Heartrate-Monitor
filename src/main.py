@@ -25,19 +25,25 @@ def main():
     # Check if we need to print config.
     if list:
         print(cfg)
-        
+
         return
 
     # Create an infinite loop that executes each second.
     while True:
+        config.debug_message(cfg, 3, "Retrieving heart rates...")
+
         # Retrieve our heart rates as a list.
         rates = fitbit.retrieve_heartrates(cfg)
 
         # Get the average between our heart rates.
         avg_rate = sum(rates) / len(rates)
 
+        config.debug_message(cfg, 3, "Heart rates retrieved :: " + avg_rate)
+
         # Check if we're below or above threshold.
         if avg_rate > int(cfg["HighThreshold"]) or avg_rate < int(cfg["LowThreshold"]):
+            config.debug_message(cfg, 1, "Heart rates are below or above thresholds!")
+
             # Determine if we have a low or high threshold.
             low_or_high = "High"
 
@@ -46,6 +52,8 @@ def main():
 
             # Loop through actions.
             for action in cfg["Actions"]:
+                config.debug_message(cfg, 3, "Parsing action...")
+
                 # Ensure we have a type.
                 if "Type" not in "action":
                     print("Action doesn't contain a type!")
@@ -54,6 +62,8 @@ def main():
 
                 # Check for HTTP request.
                 if action.lower() == "Http":
+                    config.debug_message(cfg, 2, "Found action with type HTTP!")
+
                     # Make sure we have a URL set.
                     if "Url" not in action:
                         print("Action of HTTP request does NOT contain a URL!")
@@ -83,6 +93,7 @@ def main():
                     config.debug_message(cfg, 1, "Sending HTTP request :: %s (method => %s)!" % (action["Url"], method))
                 # Otherwise, we want to send an email.
                 else:
+                    config.debug_message(cfg, 2, "Found action with type email!")
                     # Retrieve SMTP/email configuration.
                     host = "localhost"
 
