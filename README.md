@@ -21,7 +21,7 @@ python3 src/main.py cfg=./custom.json
 ## Configuration
 All configuration is handled in a file with the JSON format. The default config is `/etc/fhm/cfg.json`. You may find documented configuration below.
 
-```json
+```
 {
     // Debug level from 0 - 3 (0 = no debug).
     "Debug": 0,
