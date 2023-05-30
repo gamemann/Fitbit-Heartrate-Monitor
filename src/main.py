@@ -38,7 +38,7 @@ def main():
         # Get the average between our heart rates.
         avg_rate = sum(rates) / len(rates)
 
-        config.debug_message(cfg, 3, "Heart rates retrieved :: " + avg_rate)
+        config.debug_message(cfg, 3, "Heart rates retrieved :: Avg => " + str(avg_rate))
 
         # Check if we're below or above threshold.
         if avg_rate > int(cfg["HighThreshold"]) or avg_rate < int(cfg["LowThreshold"]):
