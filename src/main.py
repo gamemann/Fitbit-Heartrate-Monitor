@@ -51,6 +51,9 @@ def main():
             if avg_rate < int(cfg["LowThreshold"]):
                 low_or_high = "Low"
 
+            # Retrieve default formats for our action messages.
+            formats = utils.retrieve_formats(cfg, avg_rate, low_or_high)
+
             # Loop through actions.
             for action in cfg["Actions"]:
                 utils.debug_message(cfg, 3, "Parsing action...")
@@ -85,6 +88,9 @@ def main():
 
                     if "Body" in action:
                         body = action["Body"]
+
+                    # Format body.
+                    body = utils.format_message(body, formats)
 
                     # Make request and retrieve response.
                     resp = actions.send_http_request(action["Url"], method, headers, body)
@@ -137,11 +143,7 @@ def main():
                         message = action["Message"]
 
                     # Format message.
-                    message = message.replace("{avg}", avg_rate)
-                    message = message.replace("{low_or_high}", low_or_high)
-                    message = message.replace("{cfg_high_threshold}", cfg["HighThreshold"])
-                    message = message.replace("{cfg_low_threshold}", cfg["LowThreshold"])
-                    message = message.replace("{cfg_count}", cfg["AvgCount"])
+                    message = utils.format_message(message, formats)
 
                     # Send email.
                     actions.send_email(host, port, from_email, from_name, to_name, to_email, subject, message)
