@@ -30,3 +30,5 @@ def send_email(host: str = "localhost", port: int = 25, from_email: str = "test@
         except smtplib.SMTPException as e:
             print("Error sending email %s to %s" % (from_email, to))
             print(e)
+
+    smtp.quit()
