@@ -135,10 +135,10 @@ def main():
                     if "FromEmail" in action:
                         from_email = str(action["FromEmail"])
 
-                    to_email = "test@localhost"
+                    to_email: list[str] = ["test@localhost"]
 
                     if "ToEmail" in action:
-                        to_email = str(action["ToEmail"])
+                        to_email = action["ToEmail"]
 
                     subject: str = "Heartrate threshold!"
 

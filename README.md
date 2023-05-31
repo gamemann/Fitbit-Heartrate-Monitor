@@ -80,8 +80,8 @@ All configuration is handled in a file with the JSON format. The default config 
             // From email.
             "FromEmail": "ian.demi@testdomain.com",
 
-            // To email.
-            "ToEmail": "christian.deacon@anothertestdomain.com",
+            // Emails to send to in an array.
+            "ToEmail": ["christian.deacon@anothertestdomain.com"],
 
             // Subject of email.
             "Subject": "Heart rate warning!",
