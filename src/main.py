@@ -33,8 +33,14 @@ def main():
     while True:
         utils.debug_message(cfg, 3, "Retrieving heart rates...")
 
-        # Retrieve our heart rates as a list.
-        rates = fitbit.retrieve_heartrates(cfg)
+        rates: list[int] | None = None
+
+        # Check if we should force heart rate values.
+        if "ForceHeartrates" in cfg:
+            rates = list(cfg["ForceHeartRates"])
+        else:
+            # Retrieve our heart rates as a list.
+            rates = fitbit.retrieve_heartrates(cfg)
 
         if rates is None:
             print("Error retrieving heart rates... Sleeping for 5 seconds.")
