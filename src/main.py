@@ -148,7 +148,7 @@ def main():
                     to_email = "test@localhost"
 
                     if "ToEmail" in action:
-                        to_email = action["ToEmail"]
+                        to_email = str(action["ToEmail"])
 
                     subject: str = "Heartrate threshold!"
 
