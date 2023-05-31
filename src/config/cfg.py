@@ -29,4 +29,7 @@ def loadCFG(path: str) -> dict:
     if "Actions" not in cfg:
         cfg["Actions"] = []
 
+    if "DetectTimeout" not in cfg:
+        cfg["DetectTimeout"] = 120
+
     return cfg

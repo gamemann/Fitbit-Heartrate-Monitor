@@ -167,6 +167,10 @@ def main():
 
                     # Debug
                     utils.debug_message(cfg, 1, "Sending email :: %s => %s!" % (from_email, to_email))
+
+            # Sleep for detect timeout.
+            time.sleep(int(cfg["DetectTimeout"]))
+            
         time.sleep(1)
 
 if __name__ == "__main__":

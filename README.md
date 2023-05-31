@@ -41,6 +41,9 @@ All configuration is handled in a file with the JSON format. The default config 
     // The amount of previous heart rates to include in average.
     "AvgCount": 10,
 
+    // The time in seconds to timeout after a successful heart rate detection to prevent spam.
+    "DetectTimeout": 120,
+
     // Actions array.
     "Actions": 
     [

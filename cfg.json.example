@@ -5,6 +5,7 @@
     "LowThreshold": 50,
     "HighThreshold": 120,
     "AvgCount": 10,
+    "DetectTimeout": 120,
     "Actions": 
     [
 
