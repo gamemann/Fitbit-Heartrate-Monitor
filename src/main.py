@@ -130,20 +130,10 @@ def main():
                     if "Port" in action:
                         port = int(action["Port"])
 
-                    from_name: str = "Test From"
-
-                    if "FromName" in action:
-                        from_name = str(action["FromName"])
-
                     from_email: str = "test@localhost"
 
                     if "FromEmail" in action:
                         from_email = str(action["FromEmail"])
-
-                    to_name: str = "Test User"
-
-                    if "ToName" in action:
-                        to_name = str(action["ToName"])
 
                     to_email = "test@localhost"
 
@@ -167,7 +157,7 @@ def main():
                     message = utils.format_message(message, formats)
 
                     # Send email.
-                    actions.send_email(host, port, from_email, from_name, to_name, to_email, subject, message)
+                    actions.send_email(host, port, from_email, to_email, subject, message)
 
                     # Debug
                     utils.debug_message(cfg, 1, "Sending email :: %s => %s!" % (from_email, to_email))

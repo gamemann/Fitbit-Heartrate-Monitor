@@ -77,14 +77,8 @@ All configuration is handled in a file with the JSON format. The default config 
             // SMTP port.
             "Port": 25,
 
-            // From name.
-            "FromName": "Ian D",
-
             // From email.
             "FromEmail": "ian.demi@testdomain.com",
-
-            // To name.
-            "ToName": "Christian Deacon",
 
             // To email.
             "ToEmail": "christian.deacon@anothertestdomain.com",
@@ -93,7 +87,7 @@ All configuration is handled in a file with the JSON format. The default config 
             "Subject": "Heart rate warning!",
 
             // Message/body of email.
-            "Message": "Your heart rate is currently limited!"
+            "Message": "Your heart rate is currently too high or too low!"
         }
     ]
 }
