@@ -1,6 +1,6 @@
 import json
 
-def loadCFG(path: str) -> tuple:
+def loadCFG(path: str) -> dict:
     cfg: dict = {}
 
     # Open config file
