@@ -1,5 +1,8 @@
-# Fitbit Heartrate Monitor (Work In Progress)
+# Fitbit Heartrate Monitor
 An application that interacts with [Fitbit's](https://fitbit.com/) [Web API](https://dev.fitbit.com/build/reference/web-api) to retrieve information on a person's heart rate. If the heart rate goes below or above a certain threshold, certain actions may be performed such as sending an email or HTTP request.
+
+## Warning!
+I've completed this program, but it is **un-tested** since my old FitBit stopped working and I'll need to buy a new one. I'm not sure how reliable the web API hook we [use](https://dev.fitbit.com/build/reference/web-api/intraday/get-heartrate-intraday-by-date/) is (e.g. does it actually pull the current heart rate?). If it doesn't, I believe you'd need to create an application for FitBit directly since you'd need access to the device. I'm not sure how hard that is to do and if you need to be given access to do so.
 
 ## Command Line
 The following command-line options are available.
